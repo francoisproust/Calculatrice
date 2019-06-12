@@ -34,24 +34,29 @@ public class Calculatrice extends HttpServlet {
 		String operation = request.getParameter("operation");
 		String resultat = null;
 		
+		Calcul calcul = new Calcul(nombreUn,nombreDeux);
+		
 		switch (operation) {
 		case "addition":
-			Addition addition = new Addition(nombreUn,nombreDeux);
-			resultat = addition.operation(nombreUn, nombreDeux);
+			resultat = calcul.addition(nombreUn, nombreDeux);
+			operation = "+";
 			break;
 		case "soustraction":
-			Soustraction soustraction = new Soustraction(nombreUn,nombreDeux);
-			resultat = soustraction.operation(nombreUn, nombreDeux);
+			resultat = calcul.soustraction(nombreUn, nombreDeux);
+			operation = "-";
 			break;
 		case "multiplication":
-			Multiplication multiplication = new Multiplication(nombreUn,nombreDeux);
-			resultat = multiplication.operation(nombreUn, nombreDeux);
+			resultat = calcul.multiplication(nombreUn, nombreDeux);
+			operation = "*";
 			break;
 		case "division":
-			Division division = new Division(nombreUn,nombreDeux);
-			resultat = division.operation(nombreUn, nombreDeux);
+			resultat = calcul.division(nombreUn, nombreDeux);
+			operation = "/";
 			break;
 		}
+		request.setAttribute("nombreUn", nombreUn);
+		request.setAttribute("nombreDeux", nombreDeux);
+		request.setAttribute("operation", operation);
 		request.setAttribute("resultat", resultat);
 		this.getServletContext().getRequestDispatcher("/WEB-INF/calculatrice.jsp").forward(request, response);	
 	}

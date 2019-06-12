@@ -8,33 +8,29 @@
 </head>
     <body >
         <h1>Saisissez l'opération que vous souhaitez réalisée !</h1>
+        <article>
+        	 <%
+        	 	String resultat = (String) request.getAttribute("resultat");
+        	 	String nombreUn = (String) request.getAttribute("nombreUn");
+        	 	String nombreDeux = (String) request.getAttribute("nombreDeux");
+        	 	String operation = (String) request.getAttribute("operation");
+        	 	if (resultat != null){
+        	 		out.println("votre calcul de " + nombreUn + " " + operation + " " + nombreDeux + " = " + resultat);
+        	 	}
+        	 %>
+        </article>	    
         <article class="mapage">
 			<form method="post" action="">
-			  <div class="bloc">
-			      <input type="number" id="nombreUn" name="nombreUn"/>
-			  </div>
-			  <div class="bloc">
-			      <select name="operation" id="operation" name="operation">
-			         <option value="addition">Addition</option>
-			         <option value="soustraction">Soustraction</option>
-			         <option value="multiplication">Multiplication</option>
-			         <option value="division">Division</option>
-			      </select>
-			  </div>
-			  <div class="bloc">
-			      <input type="number" id="nombreDeux" name="nombreDeux"/>
-			  </div>
-			  <div class="bloc">
-			      <input type="submit" value="Envoyer" />
-			  </div>  
+		      <input type="number" id="nombreUn" name="nombreUn"/>
+		      <select name="operation" id="operation" name="operation">
+		         <option value="addition">Addition</option>
+		         <option value="soustraction">Soustraction</option>
+		         <option value="multiplication">Multiplication</option>
+		         <option value="division">Division</option>
+		      </select>
+		      <input type="number" id="nombreDeux" name="nombreDeux"/>
+		      <input type="submit" value="Envoyer" />
 			</form> 
         </article> 
-        <article>
-        	Votre résultat est de : 
-        		<%
-        			String attribut = (String) request.getAttribute("resultat");
-            		out.println( attribut ); 
-            	%>
-        </article>	
     </body>
 </html>
